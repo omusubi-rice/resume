@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              leaf: {
+                50: "#f3f6f1",
+                100: "#e4ecdf",
+                200: "#c8d9bc",
+                300: "#a3be91",
+                400: "#7a9d66",
+                500: "#5c7f4a",
+                600: "#47653a",
+              },
+            },
+            fontFamily: {
+              display: ['"Space Grotesk"', '"Noto Sans SC"', "sans-serif"],
+              body: ['"Noto Sans SC"', '"Space Grotesk"', "sans-serif"],
+            },
+            boxShadow: {
+              bento:
+                "0 2px 16px -4px rgba(92, 127, 74, 0.1), 0 1px 3px rgba(0,0,0,0.04)",
+              float: "0 20px 50px -20px rgba(92, 127, 74, 0.25)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Noto Sans SC", "Space Grotesk", sans-serif;
+        background:
+          radial-gradient(
+            ellipse 90% 60% at 50% -20%,
+            rgba(163, 190, 145, 0.35),
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse 50% 40% at 100% 50%,
+            rgba(200, 217, 188, 0.3),
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse 40% 30% at 0% 90%,
+            rgba(92, 127, 74, 0.08),
+            transparent 45%
+          ),
+          #f7f9f5;
+        color: #000;
+      }
+      .bento {
+        transition:
+          transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.45s ease;
+      }
+      .bento:hover {
+        transform: translateY(-3px) scale(1.005);
+        box-shadow: 0 20px 50px -20px rgba(92, 127, 74, 0.25);
+      }
+      .skill {
+        background: linear-gradient(90deg, #5c7f4a, #a3be91);
+        transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.on {
+        opacity: 1;
+        transform: none;
+      }
+      .delay-a {
+        transition-delay: 0.1s;
+      }
+      .delay-b {
+        transition-delay: 0.2s;
+      }
+      .delay-c {
+        transition-delay: 0.3s;
+      }
+      .snap-x-scroll {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      .snap-x-scroll > * {
+        scroll-snap-align: start;
+      }
+      @keyframes soft-bob {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+      .bob {
+        animation: soft-bob 5s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- 顶栏 -->
+    <header
+      class="sticky top-0 z-50 bg-[#f7f9f5]/80 backdrop-blur-xl border-b border-leaf-100/80"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between"
+      >
+        <!-- <a href="#top" class="font-display font-bold text-lg tracking-tight text-black"></a> -->
+        <nav class="hidden md:flex items-center gap-6 text-sm text-black/50">
+          <a href="#profile" class="hover:text-black transition-colors">关于</a>
+          <a href="#strengths" class="hover:text-black transition-colors"
+            >优势</a
+          >
+          <a href="#experience" class="hover:text-black transition-colors"
+            >经历</a
+          >
+          <a href="#projects" class="hover:text-black transition-colors"
+            >项目</a
+          >
+          <a href="#evaluation" class="hover:text-black transition-colors"
+            >评价</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main
+      id="top"
+      class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 pb-24 md:pb-16"
+    >
+      <!-- ========== 用户信息：Bento ========== -->
+      <section id="profile" class="mb-16 sm:mb-24">
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 md:grid-rows-3 gap-3 sm:gap-4 min-h-0 md:min-h-[420px]"
+        >
+          <!-- 主身份卡 -->
+          <div
+            class="bento col-span-2 row-span-2 bg-white rounded-[1.75rem] p-6 sm:p-8 shadow-bento border border-white flex flex-col justify-between relative overflow-hidden"
+          >
+            <div
+              class="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-leaf-100/80 blur-2xl pointer-events-none"
+            ></div>
+            <div class="relative">
+              <!-- <p
+                class="font-display text-[11px] tracking-[0.2em] uppercase text-black/35 mb-5"
+              >
+                前端开发
+              </p> -->
+              <h1
+                class="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-black leading-[0.95] mb-4"
+              >
+                樊宝民
+              </h1>
+              <p
+                class="text-sm sm:text-base text-black/55 leading-relaxed max-w-md"
+              >
+                熟练使用cursor开发项目，具备扎实的前端工程落地能力，能独立负责业务模块从需求理解、页面开发到联调上线的完整闭环。项目经验覆盖数字孪生大屏、安防视频监控、小程序支付、教务系统与企业人事系统，熟悉
+                Vue2/Vue3、ECharts、Cesium、Uni-app
+                及微信/支付宝小程序、Electron等技术栈，能在复杂业务场景中快速选型并交付可用方案。
+              </p>
+            </div>
+            <div
+              class="relative flex flex-wrap gap-x-5 gap-y-2 mt-6 text-sm text-black/50"
+            >
+              <span class="inline-flex items-center gap-1.5"
+                ><i data-lucide="map-pin" class="w-4 h-4 text-leaf-500"></i
+                >泰州兴化人</span
+              >
+              <span class="inline-flex items-center gap-1.5"
+                ><i
+                  data-lucide="graduation-cap"
+                  class="w-4 h-4 text-leaf-500"
+                ></i
+                >大专 · 计算机网络</span
+              >
+            </div>
+          </div>
+
+          <!-- 头像区（合并原插图 + 状态卡） -->
+          <div
+            class="bento bob col-span-2 row-span-1 rounded-[1.75rem] overflow-hidden shadow-bento border border-white min-h-[140px] sm:min-h-[160px] md:min-h-0"
+          >
+            <img
+              src="./house.jpg"
+              alt="樊宝民"
+              class="w-full h-full object-cover object-center"
+            />
+          </div>
+
+          
+          <!-- 方向 -->
+          <div
+            class="bento col-span-1 bg-white rounded-[1.75rem] p-5 sm:p-6 shadow-bento flex flex-col justify-between border border-white"
+          >
+            <i data-lucide="waypoints" class="w-5 h-5 text-leaf-500"></i>
+            <div>
+              <p class="text-xs text-black/40 mb-1">擅长方向</p>
+              <p
+                class="font-display font-semibold text-black text-base sm:text-lg leading-snug"
+              >
+                后台管理 / 大屏 / 小程序 / 桌面应用
+              </p>
+            </div>
+          </div>
+
+          <!-- 期望 -->
+          <div
+            class="bento col-span-1 bg-leaf-100/90 rounded-[1.75rem] p-5 sm:p-6 shadow-bento flex flex-col justify-between"
+          >
+            <i data-lucide="target" class="w-5 h-5 text-leaf-500"></i>
+            <div>
+              <p class="text-xs text-black/40 mb-1">期望职位</p>
+              <p
+                class="font-display font-semibold text-black text-base sm:text-lg leading-snug"
+              >
+                前端开发
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========== 个人优势 ========== -->
+      <section id="strengths" class="reveal mb-16 sm:mb-24">
+        <div
+          class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8"
+        >
+          <div>
+            <p
+              class="text-xs font-display tracking-[0.2em] uppercase text-black/35 mb-2"
+            >
+              Strengths
+            </p>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-black">
+              个人优势
+            </h2>
+          </div>
+          
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4"
+        >
+          <article
+            class="bento sm:col-span-2 bg-white rounded-[1.5rem] p-6 sm:p-7 shadow-bento border border-white"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <i data-lucide="scan-search" class="w-6 h-6 text-leaf-500"></i>
+              <span class="font-display text-3xl font-bold text-black/8"
+                >01</span
+              >
+            </div>
+            <h3 class="font-semibold text-lg text-black mb-2">前端</h3>
+            <p class="text-sm text-black/50 leading-relaxed">
+              熟练使用ES6+与TypeScript进行类型安全开发；熟悉Vite工程化构建与性能优化，注重代码简洁、可读与可维护。深耕Vue技术栈，具备复杂后台管理系统及H5/小程序多端开发经验；重视代码质量与工程规范，擅长高复用组件封装与模块化设计。
+            </p>
+          </article>
+          <article
+            class="bento sm:col-span-2 bg-white rounded-[1.5rem] p-6 sm:p-7 shadow-bento border border-white"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <i data-lucide="scan-search" class="w-6 h-6 text-leaf-500"></i>
+              <span class="font-display text-3xl font-bold text-black/8"
+                >02</span
+              >
+            </div>
+            <h3 class="font-semibold text-lg text-black mb-2">python</h3>
+            <p class="text-sm text-black/50 leading-relaxed">
+              具备基础后端开发能力，可使用常见框架与ORM编写简单业务接口，完成MySQL交互与基础CRUD。能阅读、修改并排查现有后端代码，持续补强工程结构、数据库设计与接口规范等实践能力。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========== 工作经历 ========== -->
+      <section id="experience" class="reveal mb-16 sm:mb-24">
+        <div class="mb-8">
+          <p
+            class="text-xs font-display tracking-[0.2em] uppercase text-black/35 mb-2"
+          >
+            Experience
+          </p>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-black">
+            工作经历
+          </h2>
+        </div>
+
+        <div
+          class="bg-white rounded-[1.75rem] shadow-bento border border-white overflow-hidden divide-y divide-leaf-100"
+        >
+          <article
+            class="p-6 sm:p-8 hover:bg-leaf-50/40 transition-colors duration-300"
+          >
+            <div class="flex flex-col md:flex-row md:gap-10">
+              <div class="md:w-44 shrink-0 mb-3 md:mb-0">
+                <time class="font-display text-sm text-black/35"
+                  >2021.09.09 ~ 2026.06.10</time
+                >
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
+                  <h3 class="font-display font-bold text-lg text-black">
+                    前端开发
+                  </h3>
+                  <span class="text-sm text-black/40"
+                    >江苏追铭信息科技有限公司</span
+                  >
+                </div>
+                <ul class="space-y-2 text-sm text-black/55 leading-relaxed">
+                  <li class="flex gap-2">
+                    <i
+                      data-lucide="corner-down-right"
+                      class="w-4 h-4 text-leaf-500 shrink-0 mt-0.5"
+                    ></i>
+
+                    职责范围：数字孪生大屏可视化与适配、安防视频监控接入、充电桩小程序及双端支付闭环
+                  </li>
+                  <li class="flex gap-2">
+                    <i
+                      data-lucide="corner-down-right"
+                      class="w-4 h-4 text-leaf-500 shrink-0 mt-0.5"
+                    ></i
+                    >工作任务：实时视频监控集成 工作任务：落地大屏 scale 适配与
+                    Cesium
+                    三维业务叠加；官方插件完成实时预览与录像回放；打通商户配置、支付验签、回调对账全链路
+                  </li>
+                  <li class="flex gap-2">
+                    <i
+                      data-lucide="corner-down-right"
+                      class="w-4 h-4 text-leaf-500 shrink-0 mt-0.5"
+                    ></i
+                    >工作产出：多设备大屏展示一致、监控低延迟可用、微信/支付宝支付业务闭环落地
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article
+            class="p-6 sm:p-8 hover:bg-leaf-50/40 transition-colors duration-300"
+          >
+            <div class="flex flex-col md:flex-row md:gap-10">
+              <div class="md:w-44 shrink-0 mb-3 md:mb-0">
+                <time class="font-display text-sm text-black/35"
+                  >2020.06.24 ~ 2021.06.11
+                </time>
+              </div>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
+                  <h3 class="font-display font-bold text-lg text-black">
+                    前端开发
+                  </h3>
+                  <span class="text-sm text-black/40"
+                    >江苏易龙信息科技有限公司</span
+                  >
+                </div>
+                <ul class="space-y-2 text-sm text-black/55 leading-relaxed">
+                  <li class="flex gap-2">
+                    <i
+                      data-lucide="corner-down-right"
+                      class="w-4 h-4 text-leaf-500 shrink-0 mt-0.5"
+                    ></i
+                    >职责范围：教务系统四大模块（教师发展、学生成长、特色课程、资源管理）前端开发与落地
+                  </li>
+                  <li class="flex gap-2">
+                    <i
+                      data-lucide="corner-down-right"
+                      class="w-4 h-4 text-leaf-500 shrink-0 mt-0.5"
+                    ></i
+                    >工作任务：成绩多维比对与可视化；课外活动新建—发布—报名—审核闭环；班级量化评比；保障
+                    PC/移动端规则一致、数据同步
+                  </li>
+                  <li class="flex gap-2">
+                    <i
+                      data-lucide="corner-down-right"
+                      class="w-4 h-4 text-leaf-500 shrink-0 mt-0.5"
+                    ></i
+                    >工作产出：核心教务流程线上化，支撑成绩分析、活动组织与班级评比等日常教学管理
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========== 项目经历 ========== -->
+      <section id="projects" class="reveal mb-16 sm:mb-24">
+        <div class="flex items-end justify-between mb-8 gap-4">
+          <div>
+            <p
+              class="text-xs font-display tracking-[0.2em] uppercase text-black/35 mb-2"
+            >
+              Projects
+            </p>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-black">
+              项目经历
+            </h2>
+          </div>
+          <!-- <p class="hidden sm:block text-xs text-black/30 font-display">
+            滑动浏览 →
+          </p> -->
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <article
+            class="bento bg-white rounded-[1.5rem] overflow-hidden shadow-bento border border-white flex flex-col h-full"
+          >
+            <div class="p-5 sm:p-6 flex-1 flex flex-col">
+              <div class="flex items-center gap-2 mb-2">
+                <i
+                  data-lucide="panels-top-left"
+                  class="w-4 h-4 text-leaf-500"
+                ></i>
+                <span class="text-lg font-bold text-black">智慧物业</span>
+              </div>
+              <h3 class="font-display font-bold text-black mb-2">
+                核心技术：Vue3、Cesium、ECharts、微信(支付宝)小程序
+              </h3>
+              <p class="text-sm text-black/50 leading-relaxed flex-1">
+                1.数字孪生大屏可视化：负责数字孪生大屏的可视化搭建。针对大屏常见分辨率差异导致的布局错位、拉伸变形等问题，设计并落地设计稿基准尺寸+CSSscale动态缩放方案，统一计算适配比例，保障不同显示设备下核心内容完整呈现与视觉一致性。基于Cesium加载城市白膜模型，完成小区三维建模与业务信息叠加渲染，实现点位标注、道路高亮、区域绘制等可视化能力，提升大屏展示效果与业务可读性，支撑运营人员快速理解园区空间分布与关键业务状态。
+              </p>
+              <p class="text-sm text-black/50 leading-relaxed flex-1">
+                2.实时视频监控集成：负责大屏及业务系统中的实时视频监控接入。针对大华、海康等主流安防厂商设备，在评估通用推流方案后，因稳定性不足（卡顿、花屏、高延迟）改为基于官方插件接入，显著降低播放异常与延迟问题。独立完成视频实时预览、历史录像按时间轴回放等核心能力，保障低延迟、可持续的监控查看体验，满足现场运维巡查与应急处置场景下的实时看视频、快速回溯需求。
+              </p>
+              <p class="text-sm text-black/50 leading-relaxed flex-1">
+                3.充电桩小程序：主导电动车充电桩业务小程序的全流程开发，打通微信、支付宝双端支付与业务闭环。独立完成商户账号申请、证书配置、签名验签、下单支付、回调通知到订单对账的全链路实现。
+              </p>
+            </div>
+          </article>
+           <article
+            class="bento bg-white rounded-[1.5rem] overflow-hidden shadow-bento border border-white flex flex-col h-full"
+          >
+            <div class="p-5 sm:p-6 flex-1 flex flex-col">
+              <div class="flex items-center gap-2 mb-2">
+                <i
+                  data-lucide="panels-top-left"
+                  class="w-4 h-4 text-leaf-500"
+                ></i>
+                <span class="text-lg font-bold text-black">某医院公众号项目</span>
+              </div>
+              <h3 class="font-display font-bold text-black mb-2">
+               核心技术：H5、微信JS-SDK
+              </h3>
+              <p class="text-sm text-black/50 leading-relaxed flex-1">
+                面向微信公众号场景的H5业务前端，主要对接公众号相关能力，支撑用户在公众号内完成授权登录、信息展示与常用交互。前端通过后端服务安全获取接口凭证与签名信息，完成网页授权、JS-SDK初始化及业务接口调用，保障在微信环境内稳定可用。负责公众号H5页面开发与接口联调，封装微信授权登录、用户信息获取等流程，实现静默授权。接入微信JS-SDK，完成后端签名对接与分享等常用能力。完成微信内置浏览器兼容与移动端适配，优化页面加载与交互体验，保障核心业务流程顺畅闭环。
+              </p>
+            </div>
+          </article>
+          <article
+            class="bento bg-white rounded-[1.5rem] overflow-hidden shadow-bento border border-white flex flex-col h-full delay-a"
+          >
+           <div class="p-5 sm:p-6 flex-1 flex flex-col">
+              <div class="flex items-center gap-2 mb-2">
+                <i
+                  data-lucide="panels-top-left"
+                  class="w-4 h-4 text-leaf-500"
+                ></i>
+                <span class="text-lg font-bold text-black">某小学教务系统</span>
+              </div>
+              <h3 class="font-display font-bold text-black mb-2">
+                核心技术：Vue2，Echarts，H5
+              </h3>
+              <p class="text-sm text-black/50 leading-relaxed flex-1">
+                该项目由基础数据平台与教务业务系统两大独立子系统构成，二者解耦部署、协同运行，并通过OIDC单点登录实现统一身份认证与权限鉴权，提升系统安全性与使用体验。基础平台负责全校师生主数据、组织架构及数据字典等核心信息的维护与治理，为教务系统提供稳定、可复用的数据底座；教务系统围绕校园教学与学生管理场景，覆盖教师发展、学生成长、特色课程、资源管理四大业务模块，支撑校内考试成绩分析、课外活动组织报名、班级量化评比等核心流程线上化。本人独立负责教务系统四大核心模块的前端开发与落地。重点实现复杂成绩报表的多维比对与可视化展示，支撑教师按考试批次、班级、学科等维度快速定位成绩差异；完成课外活动从新建、发布、学生报名到审核闭环的全流程管理；并落地班级量化评比相关功能，保障PC与移动端业务规则一致、数据同步可靠，满足学校日常教学管理诉求。
+              </p>
+            </div>
+          </article>
+          <article
+            class="bento bg-white rounded-[1.5rem] overflow-hidden shadow-bento border border-white flex flex-col h-full delay-a"
+          >
+           <div class="p-5 sm:p-6 flex-1 flex flex-col">
+              <div class="flex items-center gap-2 mb-2">
+                <i
+                  data-lucide="panels-top-left"
+                  class="w-4 h-4 text-leaf-500"
+                ></i>
+                <span class="text-lg font-bold text-black">人联网</span>
+              </div>
+              <h3 class="font-display font-bold text-black mb-2">
+                核心技术：Jquery
+              </h3>
+              <p class="text-sm text-black/50 leading-relaxed flex-1">
+                人事类项目，该项目为面向企业内部的人事综合管理平台，覆盖人员信息、日常考勤、云端档案及奖惩管理等核心人事场景，支撑HR与各部门协同完成员工全生命周期管理。系统以Web端为主，围绕组织架构与人员主数据展开，打通考勤统计、档案查阅、奖惩记录等业务链路，提升人事管理数字化与规范化水平。参与考勤相关页面开发，实现打卡记录查询、请假/加班申请、考勤汇总统计及异常考勤处理等功能；配合后端完成状态流转与数据展示，保障考勤结果准确可追溯。负责员工电子档案相关前端页面搭建，支持档案分类查阅、附件预览/下载、关键信息维护等能力，提升档案检索效率与信息完整性。独立完成奖惩申请、审批记录、结果公示及历史查询等交互开发，规范奖惩流程录入与展示，便于后续绩效与人事决策引用。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========== 自我评价 ========== -->
+      <section id="evaluation" class="reveal">
+        <div class="mb-8">
+          <p
+            class="text-xs font-display tracking-[0.2em] uppercase text-black/35 mb-2"
+          >
+            About
+          </p>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-black">
+            自我评价
+          </h2>
+        </div>
+
+        <div class="grid ">
+          <div
+            class="md:col-span-3 bg-white rounded-[1.75rem] p-7 sm:p-10 shadow-bento border border-white"
+          >
+            <i data-lucide="quote" class="w-7 h-7 text-leaf-300 mb-5"></i>
+            <p class="text-base sm:text-lg text-black/65 leading-relaxed mb-4">
+              工作态度认真细致，责任心强，能够主动把事情做完整、做到位。执行力较好，接到任务后能快速理解要求并推进落地，注重细节与结果质量。与同事协作配合顺畅，沟通积极，乐于分享经验并主动协助他人解决问题。始终保持积极向上的工作心态，面对压力与临时需求也能及时响应，尽量按时、保质完成上级安排的各项工作。
+            </p>
+          </div>
+          <!-- <div
+            class="md:col-span-2 rounded-[1.75rem] overflow-hidden shadow-bento relative min-h-[220px] group"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+              alt=""
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-black/60"></div>
+            <div
+              class="relative h-full flex flex-col justify-end p-6 sm:p-8 text-white"
+            >
+              <p class="text-sm text-white/55 mb-4"></p>
+            </div>
+          </div> -->
+        </div>
+      </section>
+
+      <footer class="mt-16 text-center">
+        <p class="text-xs text-black/25 font-display">© 2026 fbm</p>
+      </footer>
+    </main>
+
+    <!-- 移动底栏 -->
+    <nav
+      class="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white/90 backdrop-blur-xl border-t border-leaf-100"
+    >
+      <div class="flex justify-around h-14 items-center">
+        <a
+          href="#profile"
+          class="flex flex-col items-center gap-0.5 text-black/40 hover:text-black transition-colors"
+        >
+          <i data-lucide="layout-grid" class="w-5 h-5"></i
+          ><span class="text-[10px]">关于</span>
+        </a>
+        <a
+          href="#strengths"
+          class="flex flex-col items-center gap-0.5 text-black/40 hover:text-black transition-colors"
+        >
+          <i data-lucide="sparkles" class="w-5 h-5"></i
+          ><span class="text-[10px]">优势</span>
+        </a>
+        <a
+          href="#experience"
+          class="flex flex-col items-center gap-0.5 text-black/40 hover:text-black transition-colors"
+        >
+          <i data-lucide="briefcase" class="w-5 h-5"></i
+          ><span class="text-[10px]">经历</span>
+        </a>
+        <a
+          href="#projects"
+          class="flex flex-col items-center gap-0.5 text-black/40 hover:text-black transition-colors"
+        >
+          <i data-lucide="folder" class="w-5 h-5"></i
+          ><span class="text-[10px]">项目</span>
+        </a>
+        <a
+          href="#evaluation"
+          class="flex flex-col items-center gap-0.5 text-black/40 hover:text-black transition-colors"
+        >
+          <i data-lucide="message-circle" class="w-5 h-5"></i
+          ><span class="text-[10px]">评价</span>
+        </a>
+      </div>
+    </nav>
+
+    <script>
+      lucide.createIcons();
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add("on");
+            e.target.querySelectorAll(".skill").forEach((s) => {
+              s.style.width = s.dataset.w;
+            });
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
